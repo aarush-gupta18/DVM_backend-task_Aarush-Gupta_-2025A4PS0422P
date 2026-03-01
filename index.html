@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fest Schedule Explorer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+        <div id="stats-box">
+            <p>Total Events: <strong id="total-events"></strong></p>
+            <p>Most Popular Category: <strong id="popular-category"></strong></p>
+        </div>
+    <div class="hero">
+        <h1 id="hero-text">Fest Schedule Explorer</h1>
+        <p>Click a card to see more details. Star it to save to your lineup.</p>
+        <br>
+        <div id="controls">
+            <input type="text" id="search-bar" placeholder="Search event by name..." onkeyup="renderCards()">
+            <select id="sort-dropdown" onchange="renderCards()">
+                <option value="default">Sort: Default</option>
+                <option value="day">Sort by Day</option>
+                <option value="registrations">Sort by Registrations</option>
+            </select>
+        </div>
+    </div>
+    <div id="filter-buttons"></div>
+    <div id="cards-container"></div>
+    <p id="no-events-msg">No events found.</p>
+    <hr>
+    <div id="lineup-section">
+        <h2>My Lineup </h2>
+        <div id="lineup-container"></div>
+    </div>
+    <p id="lineup-logo" ></p>
+    <script src="schedule.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
