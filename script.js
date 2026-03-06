@@ -109,7 +109,7 @@ function renderCards() {
             }
         }
     }
-    let noEventsMsg = document.getElementById("no-events-msg");
+    let noEventsMsg = document.getElementById("none");
     let cardsContainer = document.getElementById("cards");
     if (filtered.length == 0) {
         noEventsMsg.style.display = "block";
