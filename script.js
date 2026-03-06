@@ -28,7 +28,7 @@ function showFilterButtons() {
             categories.push(cat);
         }
     }
-    let container = document.getElementById("filter");
+    let container = document.getElementById("filter-buttons");
     container.innerHTML = "";
     for (let i = 0; i < categories.length; i++) {
         let btn = document.createElement("button");
@@ -109,8 +109,8 @@ function renderCards() {
             }
         }
     }
-    let noEventsMsg = document.getElementById("none");
-    let cardsContainer = document.getElementById("cards");
+    let noEventsMsg = document.getElementById("no-events-msg");
+    let cardsContainer = document.getElementById("cards-container");
     if (filtered.length == 0) {
         noEventsMsg.style.display = "block";
         cardsContainer.innerHTML = "";
@@ -185,3 +185,4 @@ function renderLineup() {
 showStats();
 showFilterButtons();
 renderCards();
+
