@@ -1,39 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fest Schedule Explorer</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>APOGEE '26 — Schedule</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-        <div id="stats-box">
-            <p>Total Events: <strong id="total-events"></strong></p>
-            <p>Most Popular Category: <strong id="popular-category"></strong></p>
-        </div>
-    <div class="hero">
-        <h1 id="hero-text">Fest Schedule Explorer</h1>
-        <p>Click a card to see more details. Star it to save to your lineup. </p>
-        <br>
-        <div id="controls">
-            <input type="text" id="search-bar" placeholder="Search event by name..." onkeyup="renderCards()">
-            <select id="sort-dropdown" onchange="renderCards()">
-                <option value="default">Sort: Default</option>
-                <option value="day">Sort by Day</option>
-                <option value="registrations">Sort by Registrations</option>
-            </select>
-        </div>
+
+<section class="hero-section">
+  <div class="eyebrow">✦ Official Schedule</div>
+  <h1 class="fest-title">APOGEE '26</h1>
+  <nav class="days-row" id="day-filters">
+    <button class="day-pill active" id="dpill-all" onclick="filterDay(-1)" data-d="-1">ALL DAYS</button>
+    <button class="day-pill" id="dpill-0" onclick="filterDay(0)" data-d="0">DAY 0</button>
+    <button class="day-pill" id="dpill-1" onclick="filterDay(1)" data-d="1">DAY 1</button>
+    <button class="day-pill" id="dpill-2" onclick="filterDay(2)" data-d="2">DAY 2</button>
+  </nav>
+  <div class="deck" id="deck"></div>
+  <p class="scroll-hint">↓ &nbsp; scroll to explore events</p>
+</section>
+
+<section class="events-section">
+  <div class="ctrl">
+    <input class="search" id="srch" type="text" placeholder="🔍  Search events…" autocomplete="off" />
+    <div class="filter-row">
+      <div class="fbtns" id="fbtns"></div>
+      <select class="sort-sel" id="srt">
+        <option value="">Sort by…</option>
+        <option value="day">📅 Day (Asc)</option>
+        <option value="reg">🔥 Most Popular</option>
+      </select>
     </div>
-    <div id="filter-buttons"></div>
-    <div id="cards-container"></div>
-    <p id="no-events-msg">No events found.</p>
-    <hr>
-    <div id="lineup-section">
-        <h2>My Lineup </h2>
-        <div id="lineup-container"></div>
-    </div>
-    <p id="lineup-logo" ></p>
-    <script src="schedule.js"></script>
-    <script src="script.js"></script>
+  </div>
+  <div class="sec-lbl" id="all-lbl">ALL EVENTS</div>
+  <div class="grid" id="ev-grid"></div>
+  <div class="empty hidden" id="empty"> No events match </div>
+  <div class="sec-lbl hidden" id="lu-lbl">MY LINEUP </div>
+  <div class="grid" id="lu-grid"></div>
+</section>
+
+<script src="schedule.js"></script>
+<script src="script.js"></script>
+
 </body>
 </html>
