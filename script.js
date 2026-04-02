@@ -1,33 +1,30 @@
-const CAT_COLOR={Music:"#ff6b6b",Tech:"#6bf0ff",Dance:"#d86bff",Party:"#e8ff47"};
-const MAX_REG=Math.max(...events.map(e=>e.registrations));
-const totalReg=events.reduce((s,e)=>s+e.registrations,0);
-const byCat={};
+CAT_COLOR={Music:"#ff6b6b",Tech:"#6bf0ff",Dance:"#d86bff",Party:"#e8ff47"};
+MAX_REG=Math.max(...events.map(e=>e.registrations));
+totalReg=events.reduce((s,e)=>s+e.registrations,0);
+byCat={};
 events.forEach(e=>{byCat[e.category]=(byCat[e.category]||0)+e.registrations;});
-const topCat=Object.keys(byCat).reduce((a,b)=>byCat[a]>byCat[b]?a:b);
-const hotEv=events.reduce((a,b)=>a.registrations>b.registrations?a:b);
-const avgReg=Math.round(totalReg/events.length);
-const dayCount=[0,1,2].map(d=>events.filter(e=>e.day===d).length);
-const busiestDay=dayCount.indexOf(Math.max(...dayCount));
-
-const statCards=[
+topCat=Object.keys(byCat).reduce((a,b)=>byCat[a]>byCat[b]?a:b);
+hotEv=events.reduce((a,b)=>a.registrations>b.registrations?a:b);
+avgReg=Math.round(totalReg/events.length);
+dayCount=[0,1,2].map(d=>events.filter(e=>e.day===d).length);
+busiestDay=dayCount.indexOf(Math.max(...dayCount));
+statCards=[
   {rank:"A", suit:"♥", color:"#ff6b6b", backTitle:"TOTAL EVENTS",backDesc:"Events across all days",icon:"", val:events.length,frontLbl:"Total Events",joker:false},
   {rank:"A", suit:"♠", color:"#e8ff47", backTitle:"MOST POPULAR",backDesc:"Highest single-event signups", icon:"", val:hotEv.name,frontLbl:"Most Popular",joker:false},
   {rank:"",  suit:"★", color:"#ff2d78",backTitle:"DVM JOKER",backDesc:"",icon:"",val:"", frontLbl:"",joker:true},
   {rank:"A", suit:"♦", color:CAT_COLOR[topCat], backTitle:"HOTTEST CATEGORY", backDesc:"Most-registered category",icon:"",val:topCat, frontLbl:"Top Category",joker:false},
   {rank:"A", suit:"♣", color:"#ff6b6b", backTitle:"BUSIEST DAY",backDesc:"Day with the most events",icon:"", val:"Day "+busiestDay,frontLbl:"Busiest Day",joker:false},
 ];
-
 document.getElementById("deck").innerHTML = statCards.map(s => `
   <div class="poker-card${s.joker?' joker-card':''}" onclick="this.classList.toggle('flipped')">
     <div class="card-inner">
 
-      <!-- BACK: shown before flip -->
       <div class="card-face card-back" style="${s.joker?`background:linear-gradient(145deg,#1a000c,#0d0006);border-color:rgba(255,45,120,0.5);`:``}">
         <div class="back-pattern"></div>
         <div class="back-frame" style="${s.joker?`border-color:rgba(255,45,120,0.3);`:``}"></div>
         <div class="back-tl">
           ${s.joker
-            ? `<span style="font-family:var(--ff-head);font-size:10px;letter-spacing:2px;line-height:1.65;color:${s.color};display:block;font-weight:900">J<br>O<br>K<br>E<br>R</span>`
+            ? `<span style="font-family:var(--ff-head);font-size:9px;letter-spacing:2px;line-height:1.65;color:${s.color};display:block;font-weight:900">J<br>O<br>K<br>E<br>R</span>`
             : `<span class="c-rank" style="color:${s.color}">${s.rank}</span><span class="c-suit" style="color:${s.color}">${s.suit}</span>`}
         </div>
         <div class="back-body">
@@ -48,7 +45,6 @@ document.getElementById("deck").innerHTML = statCards.map(s => `
         <div class="back-tap">tap to reveal ↩</div>
       </div>
 
-      <!-- FRONT: revealed after flip -->
       <div class="card-face card-front" style="${s.joker?`background:linear-gradient(145deg,#1a000c,#0d0006);border-color:rgba(255,45,120,0.4);`:``}">
         ${s.joker ? `
           <div class="dvm-front-wrap">
@@ -75,11 +71,9 @@ document.getElementById("deck").innerHTML = statCards.map(s => `
     </div>
   </div>
 `).join("");
-
 let filter="All", query="", sort="", lineup=[], activeDay=-1;
-
 function renderFilters(){
-  const cats=["All",...new Set(events.map(e=>e.category))];
+  cats=["All",...new Set(events.map(e=>e.category))];
   document.getElementById("fbtns").innerHTML=cats
     .map(c=>`<button class="fbtn${c===filter?' active':''}" data-c="${c}">${c}</button>`)
     .join("");
@@ -89,7 +83,6 @@ function renderFilters(){
     renderEvents();
   }));
 }
-
 function getList(){
   let r=[...events];
   if(activeDay>=0) r=r.filter(e=>e.day===activeDay);
@@ -99,11 +92,10 @@ function getList(){
   if(sort==="reg")   r.sort((a,b)=>b.registrations-a.registrations);
   return r;
 }
-
 function buildCard(ev){
-  const saved=lineup.some(e=>e.id===ev.id);
-  const pct=Math.round((ev.registrations/MAX_REG)*100);
-  const col=CAT_COLOR[ev.category]||"#e8ff47";
+  saved=lineup.some(e=>e.id===ev.id);
+  pct=Math.round((ev.registrations/MAX_REG)*100);
+  col=CAT_COLOR[ev.category]||"#e8ff47";
   return `<div class="ev-card">
     <div class="card-top">
       <div class="ev-name">${ev.name}</div>
@@ -121,7 +113,6 @@ function buildCard(ev){
     </div>
   </div>`;
 }
-
 function attachBM(c){
   c.querySelectorAll(".bmbtn").forEach(b=>b.addEventListener("click",()=>{
     const id=parseInt(b.dataset.id);
@@ -130,14 +121,12 @@ function attachBM(c){
     renderEvents(); renderLineup();
   }));
 }
-
 function renderEvents(){
   const g=document.getElementById("ev-grid"),e=document.getElementById("empty"),l=getList();
   if(!l.length){g.innerHTML="";e.classList.remove("hidden");}
   else{e.classList.add("hidden");g.innerHTML=l.map(buildCard).join("");}
   attachBM(g);
 }
-
 function renderLineup(){
   const g=document.getElementById("lu-grid"),l=document.getElementById("lu-lbl");
   if(!lineup.length){g.innerHTML="";l.classList.add("hidden");return;}
@@ -145,10 +134,9 @@ function renderLineup(){
   g.innerHTML=lineup.map(buildCard).join("");
   attachBM(g);
 }
-
 document.getElementById("srch").addEventListener("input",e=>{query=e.target.value;renderEvents();});
 document.getElementById("srt").addEventListener("change",e=>{sort=e.target.value;renderEvents();});
 renderFilters(); 
 renderEvents();
-document.getElementById('dpill-all').classList.add('active');
-function filterDay(d){activeDay=d;document.querySelectorAll('.day-pill').forEach(el=>el.classList.toggle('active',parseInt(el.dataset.d)===d));renderEvents();}
+document.getElementById('day-all').classList.add('active');
+function filterDay(d){activeDay=d;document.querySelectorAll('.day').forEach(el=>el.classList.toggle('active',parseInt(el.dataset.d)===d));renderEvents();}
