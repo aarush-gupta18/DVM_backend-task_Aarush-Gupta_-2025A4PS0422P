@@ -10,20 +10,18 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
 <section class="hero-section">
-  <div class="eyebrow">✦ Official Schedule</div>
+  <div class="eyebrow">OFFICIAL SCHEDULE</div>
   <h1 class="fest-title">APOGEE '26</h1>
   <nav class="days-row" id="day-filters">
-    <button class="day-pill active" id="dpill-all" onclick="filterDay(-1)" data-d="-1">ALL DAYS</button>
-    <button class="day-pill" id="dpill-0" onclick="filterDay(0)" data-d="0">DAY 0</button>
-    <button class="day-pill" id="dpill-1" onclick="filterDay(1)" data-d="1">DAY 1</button>
-    <button class="day-pill" id="dpill-2" onclick="filterDay(2)" data-d="2">DAY 2</button>
+    <button class="day active" id="day-all" onclick="filterDay(-1)" data-d="-1">ALL DAYS</button>
+    <button class="day" id="day-0" onclick="filterDay(0)" data-d="0">DAY 0</button>
+    <button class="day" id="day-1" onclick="filterDay(1)" data-d="1">DAY 1</button>
+    <button class="day" id="day-2" onclick="filterDay(2)" data-d="2">DAY 2</button>
   </nav>
   <div class="deck" id="deck"></div>
   <p class="scroll-hint">↓ &nbsp; scroll to explore events</p>
 </section>
-
 <section class="events-section">
   <div class="ctrl">
     <input class="search" id="srch" type="text" placeholder="🔍  Search events…" autocomplete="off" />
@@ -42,9 +40,7 @@
   <div class="sec-lbl hidden" id="lu-lbl">MY LINEUP </div>
   <div class="grid" id="lu-grid"></div>
 </section>
-
 <script src="schedule.js"></script>
 <script src="script.js"></script>
-
 </body>
 </html>
