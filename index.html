@@ -10,17 +10,17 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<section class="hero-section">
-  <div class="eyebrow">OFFICIAL SCHEDULE</div>
+<section class="top-part">
+  <div class="schedule">OFFICIAL SCHEDULE</div>
   <h1 class="fest-title">APOGEE '26</h1>
-  <nav class="days-row" id="day-filters">
+  <nav class="days-row">
     <button class="day active" id="day-all" onclick="filterDay(-1)" data-d="-1">ALL DAYS</button>
     <button class="day" id="day-0" onclick="filterDay(0)" data-d="0">DAY 0</button>
     <button class="day" id="day-1" onclick="filterDay(1)" data-d="1">DAY 1</button>
     <button class="day" id="day-2" onclick="filterDay(2)" data-d="2">DAY 2</button>
   </nav>
-  <div class="deck" id="deck"></div>
-  <p class="scroll-hint">↓ &nbsp; scroll to explore events</p>
+  <div id="deck"></div>
+  <p id="scroll-hint">↓ &nbsp; scroll to explore events</p>
 </section>
 <section class="events-section">
   <div class="ctrl">
