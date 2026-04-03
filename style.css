@@ -9,7 +9,7 @@ body{
   font-family:var(--ff-body);
   background:black;
   margin:0;}
-.eyebrow{
+.schedule{
   font-size:10px;
   letter-spacing:3px;
   color:rgb(232 255 71);}
@@ -42,7 +42,7 @@ body{
   background:rgba(232,255,71,0.16);
   border-color:rgba(232,255,71,0.6);
   box-shadow:0 0 12px rgba(232,255,71,0.18);}
-.deck{
+#deck{
   display:flex;
   justify-content:space-evenly;
   align-items:center;
@@ -59,7 +59,7 @@ body{
   filter:brightness(1.1);
   transform:translateY(-8px);
   box-shadow:0 24px 48px rgba(0,0,0,0.6);}
-.card-inner{                                              /* see this*/
+.card-inner{                                              
   width:100%;
   height:100%;
   position:relative;
@@ -67,7 +67,7 @@ body{
   transition:transform .6s cubic-bezier(.4,0,.2,1);}
 .poker-card.flipped .card-inner{
   transform:rotateY(180deg);}
-.card-face{                                               /* see this*/                                             
+.card-face{                                                                         
   position:absolute;
   width:100%;
   height:100%;
@@ -87,7 +87,7 @@ body{
   gap:10px;
   padding:14px;
   position:relative;}
-.back-pattern{                                              /* see this see meanings of different types of positions */
+.back-pattern{                                          
   position:absolute;
   inset:0;
   pointer-events:none;
@@ -388,7 +388,7 @@ body{
   color:white;
   text-align:center;
   line-height:1.7;}
-.hero-section{
+.top-part{
   min-height:100vh;
   display:flex;
   flex-direction:column;
@@ -400,7 +400,7 @@ body{
   position:relative;
   box-sizing:border-box;
 }
-.scroll-hint{
+#scroll-hint{
   text-align:center;
   font-size:20px;
   letter-spacing:4px;
@@ -419,7 +419,7 @@ body{
   padding:100px 28px 60px;
 }
 @media (max-width:1400px){
-  .hero-section{padding-top:100px;padding-left:48px;padding-right:48px;}
+  .top-part{padding-top:100px;padding-left:48px;padding-right:48px;}
   .events-section{padding:48px 48px 60px;}
   .grid{grid-template-columns:repeat(auto-fill,minmax(230px,1fr));}
 }
